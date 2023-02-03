@@ -1,63 +1,8 @@
-(* An implementation of  using vanilla ocaml function *)
-module Vanilla : Cat.FloatCat with type ('a, 'b) arr = 'a -> 'b = struct
-  type ('a, 'b) arr = 'a -> 'b
-
-  let id x = x
-
-  let ( <.> ) f g x = f (g x)
-
-  let ( <*> ) f g (x, y) = (f x, g y)
-
-  let exl = fst
-
-  let exr = snd
-
-  let dup a = (a, a)
-
-  let inl a = (a, 0.)
-
-  let inr b = (0., b)
-
-  let jam (a, b) = a +. b
-
-  let it _ = ()
-
-  (* let apply (f, a) = f a *)
-
-  (* let curry f x y = f (x, y) *)
-
-  (* let uncurry f (x, y) = (f x) y *)
-
-  let unitArrow a () = a
-
-  let negateC = Float.neg
-
-  let addC (x, y) = Float.add x y
-
-  let minusC (x, y) = x -. y
-
-  let mulC (x, y) = Float.mul x y
-
-  let recipeC x = Float.div 1.0 x
-
-  let sinC = Float.sin
-
-  let logC = Float.log
-
-  let cosC = Float.cos
-
-  let expC = Float.exp
-
-  let erfC = Float.erf
-
-  let scale a x = a *. x
-end
-
 (* GAD (~>) a b = D (a -> b times (a ~> b)) *)
 
 (* Generalized the linear map in the category of differentiable function *)
 
-module GAD : functor (LM : Cat.FloatCat) ->
+module Impl : functor (LM : Cat.FloatCat) ->
   Cat.FloatCat with type ('a, 'b) arr = 'a -> 'b * ('a, 'b) LM.arr =
 functor
   (* module GAD = *)
@@ -129,7 +74,3 @@ functor
 
     let scale a x = (a *. x, LM.scale a)
   end
-
-(* Generlaized Linear Map *)
-
-(* Apply continuation to linear map *)

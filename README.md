@@ -12,7 +12,7 @@
     * 0.0 is zero object
 - [x] implement the forward AAD version
 ## Third Milestone
-- [ ] represent linear map as matrices
+- [ ] represent linear map as generalized matrices
 - [ ] represent linear map as continuation of linear map
 - [ ] RAD implementation
 
