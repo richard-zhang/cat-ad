@@ -1,14 +1,20 @@
 # Project Plan
 
-## First Commit
+## First Milestone
 - [x] implement required module signature
 - [x] implement a vanilla implementation
 - [x] represent a formula using functor
 - [x] evaluate the formula using ocaml category
-## Second Commit
-- [ ] remove all type generic
-- [ ] use float for all
-- [ ] implement the AAD version
+## Second Milestone
+- [x] replace additive type with float
+  * in order to deal with generic zero object issue
+  * I choose not to have parameterized type and use float only
+    * 0.0 is zero object
+- [x] implement the forward AAD version
+## Third Milestone
+- [ ] represent linear map as matrices
+- [ ] represent linear map as continuation of linear map
+- [ ] RAD implementation
 
 ## Helper function
 
