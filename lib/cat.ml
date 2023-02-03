@@ -2,6 +2,8 @@
 module type Cat = sig
   type ('a, 'b) arr
 
+  val id : ('a, 'a) arr
+
   val ( <.> ) : ('b, 'c) arr -> ('a, 'b) arr -> ('a, 'c) arr
 end
 
@@ -22,7 +24,7 @@ module type Cartesian = sig
 end
 
 module type CoCartesian = sig
-  include Cat
+  include Monoidal
 
   val inl : ('a, 'a * 'b) arr
 
@@ -55,16 +57,67 @@ end
 
 module type NumCat = sig
   type ('a, 'b) arr
-  val negateC : ('a , 'a) arr
-  val addC : ('a * 'a, 'a) arr
-  val minusC : ('a * 'a, 'a) arr
-  val mulC : ('a * 'a, 'a) arr
-  val divC : ('a * 'a, 'a) arr
+
+  type num
+
+  val negateC : (num, num) arr
+
+  val addC : (num * num, num) arr
+
+  val minusC : (num * num, num) arr
+
+  val mulC : (num * num, num) arr
 end
 
 module type FloatingCat = sig
   type ('a, 'b) arr
-  val sinC : ('a, 'a) arr
-  val cosC : ('a, 'a) arr
+
+  type num
+
+  val sinC : (num, num) arr
+
+  val cosC : (num, num) arr
+
+  val expC : (num, num) arr
+
+  val erfC : (num, num) arr
+
+  val logC : (num, num) arr
+
+  val recipeC : (num, num) arr
 end
 
+module type Scalable = sig
+  type ('a, 'b) arr
+
+  type num
+
+  val scale : num -> (num, num) arr
+end
+
+module type AllCat = sig
+  include Cat
+
+  include Monoidal
+
+  include Cartesian
+
+  (* include CoCartesian *)
+
+  (* include Closed with type ('a, 'b) arr := ('a, 'b) arr *)
+
+  include ConstCat with type ('a, 'b) arr := ('a, 'b) arr
+end
+
+
+module type AllNumCat = sig
+  include AllCat
+
+  include NumCat with type ('a, 'b) arr := ('a, 'b) arr
+
+  include FloatingCat with type num := num and type ('a, 'b) arr := ('a, 'b) arr
+
+  include Scalable with type num := num and type ('a, 'b) arr := ('a, 'b) arr
+end
+
+module type FloatCat = AllNumCat with type num = float

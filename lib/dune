@@ -1,2 +1,5 @@
 (library
- (name cat_ad))
+ (name cat_ad)
+ (inline_tests)
+ (preprocess
+  (pps ppx_inline_test ppx_assert)))
