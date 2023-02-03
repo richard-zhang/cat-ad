@@ -24,7 +24,7 @@ module CoCartesianOps (M : Cat.CoCartesian) = struct
   let unjoin f = (f <.> inl, f <.> inr)
 end
 
-module FloatingCatOps (M : Cat.AllNumCat) = struct
+module FloatingCatOps (M : Cat.FloatCat) = struct
   open M
   let div = mulC <.> (id <*> recipeC)
 end

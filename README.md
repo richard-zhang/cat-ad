@@ -6,6 +6,8 @@
 - [x] represent a formula using functor
 - [x] evaluate the formula using ocaml category
 ## Second Commit
+- [ ] remove all type generic
+- [ ] use float for all
 - [ ] implement the AAD version
 
 ## Helper function
@@ -33,6 +35,7 @@ $$
   * const :: s -> (s -> s)
   * (const . d) :: s -> (s -> s)
   * (const . d) x r = ((const . d) x) r = (const (d x)) r = d x
+
 $$
 \frac{d(cos(x))}{x} = - sin(x)
 $$
