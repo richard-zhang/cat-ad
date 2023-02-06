@@ -11,7 +11,13 @@
   * I choose not to have parameterized type and use float only
     * 0.0 is zero object
 - [x] implement the forward AAD version
-## Third Milestone
+## Airport Milestone
+- [x] airport_typeclass: compare haskell type class vs ocaml modular
+- [x] haskell foundation: type class/type family
+- [x] basic Haskell type class trick
+- [x] concat implementation on Additive constraints
+- [x] hacking solution to introduce additive
+## X Milestone
 - [ ] represent linear map as generalized matrices
 - [ ] represent linear map as continuation of linear map
 - [ ] RAD implementation
